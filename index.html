@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CaliPy is a Python library for probabilistic calibration and scientific modeling. Build models from reusable blocks, fit their unknowns, and inspect uncertainty.">
+  <meta name="theme-color" content="#f5f4ed">
+  <title>CaliPy — From measurements to models</title>
+  <style>
+    :root { color-scheme: light; --paper: #f5f4ed; --ink: #213c35; --muted: #53665e; --line: #ccd2c7; --accent: #a84b2b; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-underline-offset: 5px; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; }
+    a:hover { text-decoration-thickness: 2px; }
+    .wrap { width: min(1180px, calc(100% - 96px)); margin-inline: auto; }
+    .skip-link { position: absolute; top: -80px; left: 20px; padding: 12px; background: white; z-index: 2; }
+    .skip-link:focus { top: 12px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 29px; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 29px; font-weight: 700; letter-spacing: -1.5px; }
+    .brand svg { width: 29px; height: 29px; }
+    nav { display: flex; gap: 30px; align-items: center; font-size: 14px; }
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .hero { display: grid; grid-template-columns: 1.13fr 1fr; align-items: center; gap: 64px; padding-block: 83px 77px; }
+    .eyebrow { margin: 0 0 27px; font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+    .eyebrow::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 11px; background: var(--accent); border-radius: 50%; }
+    h1 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(48px, 5.4vw, 73px); line-height: 1.05; font-weight: 400; letter-spacing: -3px; }
+    h1 em { color: var(--accent); font-weight: 400; }
+    .intro { max-width: 470px; margin: 27px 0 0; font-size: 17px; line-height: 1.75; color: var(--muted); }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 31px; font-size: 14px; }
+    .button { display: inline-flex; align-items: center; gap: 26px; padding: 17px 23px; background: var(--ink); color: var(--paper); text-decoration: none; border-radius: 3px; }
+    .button:hover { background: #315548; }
+    .secondary { text-decoration: none; border-bottom: 1px solid var(--line); padding-block: 7px; }
+    .foundation { margin-top: 28px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: .25px; color: var(--muted); }
+    figure { margin: 0; padding: 28px 26px 23px; border: 1px solid var(--line); border-radius: 4px; background-color: #eef0e7; background-image: radial-gradient(#c8cfc2 .65px, transparent .65px); background-size: 16px 16px; }
+    .figure-label { display: flex; justify-content: space-between; gap: 16px; font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+    .model { width: 100%; height: auto; display: block; margin-block: 20px 12px; }
+    figcaption { font-size: 12px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--line); }
+    .principles { border-top: 1px solid var(--line); padding-block: 31px 39px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 43px; }
+    .principle { display: grid; grid-template-columns: 24px 1fr; align-content: start; gap: 12px; }
+    .number { font-family: 'Courier New', monospace; font-size: 11px; color: var(--accent); padding-top: 4px; }
+    h2 { font-size: 16px; font-weight: 500; letter-spacing: -.25px; margin: 0 0 10px; }
+    .principle p { font-size: 13px; line-height: 1.8; color: var(--muted); margin: 0; }
+    footer { border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 22px 28px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    footer p { margin: 0; }
+    footer a { text-decoration-color: var(--line); }
+    @media (max-width: 900px) {
+      .wrap { width: calc(100% - 48px); }
+      .hero { gap: 32px; padding-block: 60px; }
+      h1 { font-size: 52px; letter-spacing: -2px; }
+      .intro { font-size: 15px; }
+      figure { padding: 21px 16px 18px; }
+      .principles { gap: 25px; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: calc(100% - 40px); }
+      header { padding-block: 22px; }
+      nav { gap: 18px; font-size: 13px; }
+      .brand { font-size: 25px; }
+      .brand svg { width: 25px; height: 25px; }
+      .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 43px 39px; }
+      .eyebrow { font-size: 10px; margin-bottom: 22px; }
+      h1 { font-size: clamp(44px, 10vw, 62px); }
+      .intro { max-width: 520px; font-size: 16px; margin-top: 22px; }
+      .actions { gap: 22px; }
+      .foundation { margin-top: 22px; }
+      figure { padding: 22px 24px; }
+      .principles { grid-template-columns: 1fr; gap: 27px; padding-block: 30px; }
+      .principle { gap: 13px; }
+      .principle p { max-width: 480px; }
+    }
+    @media (max-width: 360px) {
+      .wrap { width: calc(100% - 32px); }
+      .brand svg { display: none; }
+      nav { gap: 12px; }
+      figure { padding-inline: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="./" aria-label="CaliPy home">
+        <svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 23V7h8v8h14v8H4Z" stroke="currentColor" stroke-width="1.7"/><path d="M18 7h8v8h-8z" fill="currentColor"/><circle cx="8" cy="3" r="1.5" fill="currentColor"/><circle cx="22" cy="3" r="1.5" fill="currentColor"/></svg>
+        CaliPy
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="https://atlasoptimization.github.io/calipy/">Documentation <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/atlasoptimization/calipy">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">Calibration Library for Python</p>
+          <h1 id="hero-title">From measurements<br>to <em>models.</em></h1>
+          <p class="intro">Build scientific models from reusable blocks. Fit their unknowns, explore uncertainty, and inspect what your data actually support.</p>
+          <div class="actions">
+            <a class="button" href="https://atlasoptimization.github.io/calipy/">Read the docs <span aria-hidden="true">↗</span></a>
+            <a class="secondary" href="#modeling-idea">Explore the modeling idea <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="foundation">Built on PyTorch + Pyro · Pre-alpha research software</p>
+        </div>
+        <figure>
+          <div class="figure-label"><span>A MODEL OF A MEASUREMENT</span><span aria-hidden="true">01 /</span></div>
+          <svg class="model" viewBox="0 0 400 310" role="img" aria-labelledby="model-title model-description">
+            <title id="model-title">From a physical quantity to observed readings</title>
+            <desc id="model-description">A physical quantity passes through a sensor response and a measurement model to produce readings. An unknown noise scale feeds the measurement model.</desc>
+            <defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0 6 3 0 6" fill="none" stroke="#64786b" stroke-width="1.1"/></marker></defs>
+            <g fill="none" stroke="#64786b" stroke-width="1.5" marker-end="url(#arrow)">
+              <path d="M128 71v29"/><path d="M128 152v29"/><path d="M128 233v31"/><path d="M311 151v56h-73"/>
+            </g>
+            <g fill="#f8f8f2" stroke="#b7c2b3">
+              <rect x="25" y="19" width="207" height="52" rx="4"/>
+              <rect x="25" y="100" width="207" height="52" rx="4"/>
+            </g>
+            <rect x="25" y="181" width="207" height="52" rx="4" fill="#213c35"/>
+            <rect x="262" y="102" width="109" height="49" rx="24.5" fill="#f4e6da" stroke="#c29a7e"/>
+            <g font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#213c35">
+              <text x="45" y="50">Physical quantity</text><text x="45" y="131">Sensor response</text>
+              <text x="45" y="212" fill="#f5f4ed">Measurement model</text>
+              <text x="316" y="131" font-size="12" text-anchor="middle" fill="#863e26">Noise scale</text>
+              <text x="279" y="91" font-size="10" fill="#53665e">UNKNOWN</text>
+              <text x="25" y="298" font-size="11" fill="#53665e">Observed readings</text>
+            </g>
+            <g fill="#a84b2b"><circle cx="87" cy="275" r="4"/><circle cx="108" cy="272" r="4"/><circle cx="129" cy="278" r="4"/><circle cx="150" cy="274" r="4"/><circle cx="171" cy="276" r="4"/></g>
+            <g fill="#eef0e7" stroke="#64786b" stroke-width="1.3"><circle cx="128" cy="71" r="3"/><circle cx="128" cy="152" r="3"/><circle cx="232" cy="207" r="3"/></g>
+          </svg>
+          <figcaption>Describe how a measurement is made.<br>Use the observations to learn its unknowns.</figcaption>
+        </figure>
+      </section>
+      <section class="principles" id="modeling-idea" aria-label="The CaliPy approach">
+        <article class="principle"><span class="number" aria-hidden="true">01</span><div><h2>Start with the science.</h2><p>Connect quantities, sensor effects, and observations into an explicit model of your experiment.</p></div></article>
+        <article class="principle"><span class="number" aria-hidden="true">02</span><div><h2>Make uncertainty explicit.</h2><p>Distinguish fixed values, point estimates, and prior-backed unknowns. Choose inference to suit the model.</p></div></article>
+        <article class="principle"><span class="number" aria-hidden="true">03</span><div><h2>Keep the model inspectable.</h2><p>Named dimensions and reusable blocks make structure visible as you generate, fit, and inspect.</p></div></article>
+      </section>
+    </main>
+    <footer>
+      <p>CaliPy · A project by Dr. Jemil Avers Butt / Atlas Optimization</p>
+      <p>Research software. APIs may evolve. &nbsp; <a href="https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md">License</a></p>
+    </footer>
+  </div>
+</body>
+</html>
