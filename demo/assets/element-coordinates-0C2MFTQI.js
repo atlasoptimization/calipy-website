@@ -1,0 +1,1 @@
+function e(e,t,n){return n.width<=0||n.height<=0||n.clientWidth<=0||n.clientHeight<=0?{x:0,y:0}:{x:(e-n.left)*n.clientWidth/n.width,y:(t-n.top)*n.clientHeight/n.height}}export{e as t};

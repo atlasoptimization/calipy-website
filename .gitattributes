@@ -1,0 +1,4 @@
+# Generated deployment assets retain upstream shader strings and licence text.
+# Keep whitespace checks on authored sources without rewriting bundled vendors.
+demo/assets/** linguist-generated=true -whitespace
+demo/THIRD_PARTY_NOTICES.txt linguist-generated=true -whitespace

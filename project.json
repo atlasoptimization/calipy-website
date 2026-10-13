@@ -24,6 +24,7 @@
     "getting_started": "https://calpymodels.com/get-started/",
     "applications": "https://calpymodels.com/examples/",
     "worked_example": "https://calpymodels.com/examples/sensor-warmup/",
+    "browser_demo": "https://calpymodels.com/demo/",
     "product_tour": "https://calpymodels.com/tour/",
     "services": "https://calpymodels.com/services/",
     "calibration_guide": "https://calpymodels.com/learn/sensor-calibration/",
@@ -33,7 +34,8 @@
   "availability": {
     "public_python_package": true,
     "block_api": "development preview; not guaranteed in the public package",
-    "model_forge": "experimental local development workbench; not a hosted app",
+    "browser_demo": "static inspection and recorded inference playback; no live Python runtime",
+    "model_forge": "experimental local development workbench; static browser demo available",
     "mcp_bridge": "optional local development prototype; not published to a registry",
     "hosted_inference_api": false,
     "hosted_mcp_endpoint": false

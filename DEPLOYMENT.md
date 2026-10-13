@@ -70,3 +70,31 @@ Also verify `/tour/`, `/services/`, `/examples/sensor-warmup/`, and
 Review the proposed service format and `GROWTH_PLAN.md` before making the site
 public. No analytics collection is currently enabled. A main-branch Git push
 may trigger a provider pull if automatic deployment has been configured.
+
+## Browser demo export
+
+Serve `/demo/` as an ordinary directory index, including its hashed assets and `recordings/` files. It works at a subpath using relative asset URLs. No backend or SPA rewrite is needed. The demo is deliberately marked `noindex` during this preview; the substantive product tour remains indexable. Test model inspection, measurements, recorded playback and results before publishing. Preserve `recordings/LICENSE.md` and `THIRD_PARTY_NOTICES.txt`.
+
+## Push the website to the provider's Git source
+
+Once the website changes are committed on this repository's `main`, run from
+the `calipy-website` folder:
+
+```sh
+git push origin main
+```
+
+Its `origin` is `https://github.com/atlasoptimization/calipy-website`. Configure
+the provider's **Deploy using Git** to pull that repository's `main` branch and
+serve the repository root. If automatic deployment is enabled, the push can
+trigger a pull; otherwise use the provider's Deploy/Pull control after pushing.
+The demo will be served at `https://calpymodels.com/demo/` once DNS, HTTPS and
+the deployment are working. A local Git commit alone does not reach the server.
+
+The sibling `calipy_codex` repository has its own origin and history. Its
+source commits do not publish this website. For a later GUI-demo update, run
+`npm run build:demo` in `../calipy_codex/apps/calipy_gui`, transfer the contents
+of its `dist-demo/` into this repository's `demo/`, then run the website checks,
+review and commit the changed files, and push this repository again. No Python
+installation, `.venv`, `node_modules` or library checkout belongs on the website
+host. Keep the recording and its digest manifest together when transferring.

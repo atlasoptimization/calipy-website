@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { site, pages } from '../content/pages.mjs';
 import { chartMarkup, scenarios } from '../assets/simulation.js';
 
@@ -79,6 +80,22 @@ assert.ok(Math.abs(rmse(()=>baseline)-evidence.held_out_rmse.constant_training_m
 const fit=evidence.estimates;
 assert.ok(Math.abs(rmse(row=>fit.steady-fit.drop*Math.exp(-row.time/fit.tau))-evidence.held_out_rmse.warmup_model)<0.00001,'fitted evidence matches downloaded CSV and parameters');
 assert.equal(metadata.services.booking_available,false);
+assert.equal(metadata.availability.browser_demo,'static inspection and recorded inference playback; no live Python runtime');
+const demoHtml = await read('demo/index.html');
+for (const [, reference] of demoHtml.matchAll(/(?:href|src)="(\.\/[^"#]+)"/g)) {
+  await stat(resolve(root, 'demo', reference));
+}
+const demoManifest = JSON.parse(await read('demo/recordings/manifest.json'));
+for (const [name, hash] of Object.entries(demoManifest.files)) {
+  const bytes = await readFile(resolve(root, 'demo/recordings', name));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), hash, `demo recording integrity: ${name}`);
+}
+const demoRecord = JSON.parse(await read('demo/recordings/first-measurement.json'));
+assert.equal(demoRecord.mode,'recorded');
+assert.equal(demoRecord.snapshot.authoring.revision_id,demoRecord.result.revision_id);
+assert.ok((await read('demo/THIRD_PARTY_NOTICES.txt')).includes('three'));
+await stat(resolve(root,'demo/recordings/LICENSE.md'));
+console.log('PASS: static browser demo assets, recording digests, revision identity and licences.');
 assert.ok((await read('get-started/index.html')).includes('.\\.venv\\Scripts\\python.exe'),'PowerShell path preserves backslashes');
 console.log('PASS: downloadable synthetic dataset, split, baseline and fitted RMSE agree with the reported evidence.');
 console.log(`PASS: ${pages.length} pages; ${localLinks} local links/assets/anchors; canonical/schema/sitemap consistency; crawler policy; availability metadata; three deterministic chart scenarios.`);

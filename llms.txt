@@ -17,7 +17,8 @@ The public package is named calipy-ppl and is imported as calipy. Public release
 ## Worked material
 
 - [Sensor warm-up study](https://calpymodels.com/examples/sensor-warmup/): Executed development example with simulated data, a held-out baseline comparison, code, and limitations.
-- [Product tour](https://calpymodels.com/tour/): Current development GUI screenshots and a guided workflow; not a hosted app.
+- [Interactive browser demo](https://calpymodels.com/demo/): Inspect a fixed model using the real GUI renderer and replay recorded NUTS results; no live inference or hosted Python runtime.
+- [Product tour](https://calpymodels.com/tour/): Development GUI screenshots and a link to the interactive demo.
 - [Calibration field guide](https://calpymodels.com/learn/sensor-calibration/): Questions, measurement design, inference, and validation.
 - [Modeling pilot](https://calpymodels.com/services/): Proposed engagement format with individually agreed scope and commercial terms.
 

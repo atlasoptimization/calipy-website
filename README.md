@@ -72,3 +72,7 @@ See `GROWTH_PLAN.md` for the six priorities, source-site observations, launch
 dependencies, business decisions, and the measurement plan. Analytics is not
 enabled. Current GUI captures are `assets/forge-*.jpg`; their provenance and
 scientific-example execution are recorded in `EVIDENCE.md`.
+
+## Browser demo
+
+`demo/` is a generated static export from `../calipy_codex/apps/calipy_gui/`. Its source remains beside the real GUI; it reuses the same model renderer, inspectors, results viewer and theme. Do not hand-edit hashed demo assets. Build with `npm run build:demo` in the GUI directory, then replace `demo/` with the `dist-demo/` output. No Python, Node server, new website dependency, or API endpoint is deployed. Demo results are recorded; public package/development API distinctions still apply.

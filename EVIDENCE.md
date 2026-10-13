@@ -174,3 +174,7 @@ but is no longer displayed as the current workbench.
 and first-party homepage research (Linear, PostHog, PyMC Labs). Proposed service
 terms are labeled on the page. No analytics provider, booking, payment, invented
 customer proof, or hosted inference service has been added.
+
+## Interactive browser demo — 2026-10-13
+
+The demo reuses the real GUI renderer and inspection/results components. The existing first-measurement tutorial was exported in an isolated Python workspace. Eight illustrative readings, Normal(0, 5) prior for scalar mu, known noise 0.2, NUTS 100 warm-up / 320 retained draws / seed 17, 64 posterior-predictive draws. Mean 1.999335, SD 0.068209; independent conjugate reference mean 1.999600, SD 0.070704. The downloadable equivalent Python example executed successfully with the same summary. This short single chain is teaching evidence, not proof of convergence or a benchmark. Exact source commit, tutorial hash and runtime versions are in `demo/recordings/first-measurement.json`. A build-time mode guard rejects all bridge requests before network access. No live inference, server upload, or analytics was added.
