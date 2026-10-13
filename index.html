@@ -1,146 +1,67 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CaliPy is a Python library for probabilistic calibration and scientific modeling. Build models from reusable blocks, fit their unknowns, and inspect uncertainty.">
-  <meta name="theme-color" content="#f5f4ed">
-  <title>CaliPy — From measurements to models</title>
-  <style>
-    :root { color-scheme: light; --paper: #f5f4ed; --ink: #213c35; --muted: #53665e; --line: #ccd2c7; --accent: #a84b2b; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-underline-offset: 5px; }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; }
-    a:hover { text-decoration-thickness: 2px; }
-    .wrap { width: min(1180px, calc(100% - 96px)); margin-inline: auto; }
-    .skip-link { position: absolute; top: -80px; left: 20px; padding: 12px; background: white; z-index: 2; }
-    .skip-link:focus { top: 12px; }
-    header { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 29px; border-bottom: 1px solid var(--line); }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 29px; font-weight: 700; letter-spacing: -1.5px; }
-    .brand svg { width: 29px; height: 29px; }
-    nav { display: flex; gap: 30px; align-items: center; font-size: 14px; }
-    nav a { text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    .hero { display: grid; grid-template-columns: 1.13fr 1fr; align-items: center; gap: 64px; padding-block: 83px 77px; }
-    .eyebrow { margin: 0 0 27px; font-family: 'Courier New', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
-    .eyebrow::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 11px; background: var(--accent); border-radius: 50%; }
-    h1 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(48px, 5.4vw, 73px); line-height: 1.05; font-weight: 400; letter-spacing: -3px; }
-    h1 em { color: var(--accent); font-weight: 400; }
-    .intro { max-width: 470px; margin: 27px 0 0; font-size: 17px; line-height: 1.75; color: var(--muted); }
-    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 31px; font-size: 14px; }
-    .button { display: inline-flex; align-items: center; gap: 26px; padding: 17px 23px; background: var(--ink); color: var(--paper); text-decoration: none; border-radius: 3px; }
-    .button:hover { background: #315548; }
-    .secondary { text-decoration: none; border-bottom: 1px solid var(--line); padding-block: 7px; }
-    .foundation { margin-top: 28px; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: .25px; color: var(--muted); }
-    figure { margin: 0; padding: 28px 26px 23px; border: 1px solid var(--line); border-radius: 4px; background-color: #eef0e7; background-image: radial-gradient(#c8cfc2 .65px, transparent .65px); background-size: 16px 16px; }
-    .figure-label { display: flex; justify-content: space-between; gap: 16px; font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
-    .model { width: 100%; height: auto; display: block; margin-block: 20px 12px; }
-    figcaption { font-size: 12px; line-height: 1.6; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--line); }
-    .principles { border-top: 1px solid var(--line); padding-block: 31px 39px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 43px; }
-    .principle { display: grid; grid-template-columns: 24px 1fr; align-content: start; gap: 12px; }
-    .number { font-family: 'Courier New', monospace; font-size: 11px; color: var(--accent); padding-top: 4px; }
-    h2 { font-size: 16px; font-weight: 500; letter-spacing: -.25px; margin: 0 0 10px; }
-    .principle p { font-size: 13px; line-height: 1.8; color: var(--muted); margin: 0; }
-    footer { border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 22px 28px; color: var(--muted); font-size: 11px; line-height: 1.7; }
-    footer p { margin: 0; }
-    footer a { text-decoration-color: var(--line); }
-    @media (max-width: 900px) {
-      .wrap { width: calc(100% - 48px); }
-      .hero { gap: 32px; padding-block: 60px; }
-      h1 { font-size: 52px; letter-spacing: -2px; }
-      .intro { font-size: 15px; }
-      figure { padding: 21px 16px 18px; }
-      .principles { gap: 25px; }
-    }
-    @media (max-width: 680px) {
-      .wrap { width: calc(100% - 40px); }
-      header { padding-block: 22px; }
-      nav { gap: 18px; font-size: 13px; }
-      .brand { font-size: 25px; }
-      .brand svg { width: 25px; height: 25px; }
-      .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 43px 39px; }
-      .eyebrow { font-size: 10px; margin-bottom: 22px; }
-      h1 { font-size: clamp(44px, 10vw, 62px); }
-      .intro { max-width: 520px; font-size: 16px; margin-top: 22px; }
-      .actions { gap: 22px; }
-      .foundation { margin-top: 22px; }
-      figure { padding: 22px 24px; }
-      .principles { grid-template-columns: 1fr; gap: 27px; padding-block: 30px; }
-      .principle { gap: 13px; }
-      .principle p { max-width: 480px; }
-    }
-    @media (max-width: 360px) {
-      .wrap { width: calc(100% - 32px); }
-      .brand svg { display: none; }
-      nav { gap: 12px; }
-      figure { padding-inline: 14px; }
-    }
-  </style>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="wrap">
-    <header>
-      <a class="brand" href="./" aria-label="CaliPy home">
-        <svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 23V7h8v8h14v8H4Z" stroke="currentColor" stroke-width="1.7"/><path d="M18 7h8v8h-8z" fill="currentColor"/><circle cx="8" cy="3" r="1.5" fill="currentColor"/><circle cx="22" cy="3" r="1.5" fill="currentColor"/></svg>
-        CaliPy
-      </a>
-      <nav aria-label="Main navigation">
-        <a href="https://atlasoptimization.github.io/calipy/">Documentation <span aria-hidden="true">↗</span></a>
-        <a href="https://github.com/atlasoptimization/calipy">GitHub <span aria-hidden="true">↗</span></a>
-      </nav>
-    </header>
-    <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div>
-          <p class="eyebrow">Calibration Library for Python</p>
-          <h1 id="hero-title">From measurements<br>to <em>models.</em></h1>
-          <p class="intro">Build scientific models from reusable blocks. Fit their unknowns, explore uncertainty, and inspect what your data actually support.</p>
-          <div class="actions">
-            <a class="button" href="https://atlasoptimization.github.io/calipy/">Read the docs <span aria-hidden="true">↗</span></a>
-            <a class="secondary" href="#modeling-idea">Explore the modeling idea <span aria-hidden="true">↓</span></a>
-          </div>
-          <p class="foundation">Built on PyTorch + Pyro · Pre-alpha research software</p>
-        </div>
-        <figure>
-          <div class="figure-label"><span>A MODEL OF A MEASUREMENT</span><span aria-hidden="true">01 /</span></div>
-          <svg class="model" viewBox="0 0 400 310" role="img" aria-labelledby="model-title model-description">
-            <title id="model-title">From a physical quantity to observed readings</title>
-            <desc id="model-description">A physical quantity passes through a sensor response and a measurement model to produce readings. An unknown noise scale feeds the measurement model.</desc>
-            <defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0 6 3 0 6" fill="none" stroke="#64786b" stroke-width="1.1"/></marker></defs>
-            <g fill="none" stroke="#64786b" stroke-width="1.5" marker-end="url(#arrow)">
-              <path d="M128 71v29"/><path d="M128 152v29"/><path d="M128 233v31"/><path d="M311 151v56h-73"/>
-            </g>
-            <g fill="#f8f8f2" stroke="#b7c2b3">
-              <rect x="25" y="19" width="207" height="52" rx="4"/>
-              <rect x="25" y="100" width="207" height="52" rx="4"/>
-            </g>
-            <rect x="25" y="181" width="207" height="52" rx="4" fill="#213c35"/>
-            <rect x="262" y="102" width="109" height="49" rx="24.5" fill="#f4e6da" stroke="#c29a7e"/>
-            <g font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#213c35">
-              <text x="45" y="50">Physical quantity</text><text x="45" y="131">Sensor response</text>
-              <text x="45" y="212" fill="#f5f4ed">Measurement model</text>
-              <text x="316" y="131" font-size="12" text-anchor="middle" fill="#863e26">Noise scale</text>
-              <text x="279" y="91" font-size="10" fill="#53665e">UNKNOWN</text>
-              <text x="25" y="298" font-size="11" fill="#53665e">Observed readings</text>
-            </g>
-            <g fill="#a84b2b"><circle cx="87" cy="275" r="4"/><circle cx="108" cy="272" r="4"/><circle cx="129" cy="278" r="4"/><circle cx="150" cy="274" r="4"/><circle cx="171" cy="276" r="4"/></g>
-            <g fill="#eef0e7" stroke="#64786b" stroke-width="1.3"><circle cx="128" cy="71" r="3"/><circle cx="128" cy="152" r="3"/><circle cx="232" cy="207" r="3"/></g>
-          </svg>
-          <figcaption>Describe how a measurement is made.<br>Use the observations to learn its unknowns.</figcaption>
-        </figure>
-      </section>
-      <section class="principles" id="modeling-idea" aria-label="The CaliPy approach">
-        <article class="principle"><span class="number" aria-hidden="true">01</span><div><h2>Start with the science.</h2><p>Connect quantities, sensor effects, and observations into an explicit model of your experiment.</p></div></article>
-        <article class="principle"><span class="number" aria-hidden="true">02</span><div><h2>Make uncertainty explicit.</h2><p>Distinguish fixed values, point estimates, and prior-backed unknowns. Choose inference to suit the model.</p></div></article>
-        <article class="principle"><span class="number" aria-hidden="true">03</span><div><h2>Keep the model inspectable.</h2><p>Named dimensions and reusable blocks make structure visible as you generate, fit, and inspect.</p></div></article>
-      </section>
-    </main>
-    <footer>
-      <p>CaliPy · A project by Dr. Jemil Avers Butt / Atlas Optimization</p>
-      <p>Research software. APIs may evolve. &nbsp; <a href="https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md">License</a></p>
-    </footer>
-  </div>
-</body>
-</html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CaliPy — Probabilistic calibration &amp; scientific modeling in Python</title><meta name="description" content="Probabilistic calibration and scientific modeling in Python. Build instrument models, quantify measurement uncertainty, and connect scientific effects with CaliPy.">
+<meta name="theme-color" content="#060b0e"><meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://calpymodels.com/"><link rel="icon" href="/assets/calipy-prism.png" type="image/png">
+<link rel="stylesheet" href="/assets/site.css"><link rel="alternate" type="application/json" href="/project.json" title="CaliPy project metadata">
+<meta property="og:type" content="website"><meta property="og:site_name" content="CaliPy"><meta property="og:locale" content="en_US">
+<meta property="og:title" content="CaliPy — Probabilistic calibration &amp; scientific modeling in Python"><meta property="og:description" content="Probabilistic calibration and scientific modeling in Python. Build instrument models, quantify measurement uncertainty, and connect scientific effects with CaliPy."><meta property="og:url" content="https://calpymodels.com/">
+<meta property="og:image" content="https://calpymodels.com/assets/social-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="CaliPy — Find the science in your measurements. Probabilistic calibration in Python.">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="CaliPy — Probabilistic calibration &amp; scientific modeling in Python"><meta name="twitter:description" content="Probabilistic calibration and scientific modeling in Python. Build instrument models, quantify measurement uncertainty, and connect scientific effects with CaliPy."><meta name="twitter:image" content="https://calpymodels.com/assets/social-card.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://calpymodels.com/#organization","name":"Atlas Optimization GmbH","email":"jemil.butt@atlasoptimization.com"},{"@type":"Person","@id":"https://calpymodels.com/#author","name":"Jemil Avers Butt","affiliation":{"@id":"https://calpymodels.com/#organization"}},{"@type":"WebSite","@id":"https://calpymodels.com/#website","url":"https://calpymodels.com/","name":"CaliPy","description":"Probabilistic calibration and scientific modeling in Python. Build instrument models, quantify measurement uncertainty, and connect scientific effects with CaliPy.","inLanguage":"en","publisher":{"@id":"https://calpymodels.com/#organization"}},{"@type":"SoftwareSourceCode","@id":"https://calpymodels.com/#software","name":"CaliPy","alternateName":"Calibration Library for Python","description":"A Python library for probabilistic instrument modeling and calibration, built on PyTorch and Pyro.","url":"https://calpymodels.com/","codeRepository":"https://github.com/atlasoptimization/calipy","programmingLanguage":"Python","runtimePlatform":"PyTorch and Pyro","license":"https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md","author":{"@id":"https://calpymodels.com/#author"},"sameAs":["https://pypi.org/project/calipy-ppl/","https://github.com/atlasoptimization/calipy"],"citation":"https://doi.org/10.5445/IR/1000179733"},{"@type":"WebPage","@id":"https://calpymodels.com/#page","url":"https://calpymodels.com/","name":"CaliPy — Probabilistic calibration & scientific modeling in Python","description":"Probabilistic calibration and scientific modeling in Python. Build instrument models, quantify measurement uncertainty, and connect scientific effects with CaliPy.","isPartOf":{"@id":"https://calpymodels.com/#website"},"about":{"@id":"https://calpymodels.com/#software"},"inLanguage":"en"}]}</script>
+<script src="/assets/site.js" type="module"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner wrap"><a class="brand" href="/" aria-label="CaliPy home"><svg class="brand-mark" viewBox="275 180 705 800" aria-hidden="true" focusable="false"><image href="/assets/calipy-prism.png" width="1254" height="1254"/></svg><img class="brand-wordmark" src="/assets/calipy-wordmark.svg" width="795" height="133" alt="CaliPy"></a><nav class="nav" aria-label="Main navigation"><a href="/examples/">Applications</a><a href="/tour/">Product tour</a><a href="/services/">Work with us</a><a href="https://atlasoptimization.github.io/calipy/">Docs ↗</a><a href="/get-started/" class="nav-cta">Try CaliPy →</a></nav><details class="mobile-menu"><summary>Menu</summary><nav aria-label="Mobile navigation"><a href="/examples/">Applications</a><a href="/tour/">Product tour</a><a href="/services/">Work with us</a><a href="https://atlasoptimization.github.io/calipy/">Docs ↗</a><a href="/get-started/" class="nav-cta">Try CaliPy →</a></nav></details></div></header>
+<main id="main"><div class="wrap"><section class="hero" aria-labelledby="hero-title"><div>
+      <p class="eyebrow dot">Probabilistic calibration. In Python.</p>
+      <h1 id="hero-title">Find the science<br>in your<br><em>measurements.</em></h1>
+      <p class="lead">For engineers and researchers working with sensors and instruments. Connect physical effects, estimate unknown quantities, and understand what your measurements can tell you.</p>
+      <div class="actions"><a class="button" href="/get-started/">Start with CaliPy <span aria-hidden="true">→</span></a><a class="text-link" href="/tour/">See the product tour <span aria-hidden="true">→</span></a></div>
+      <div class="install-line"><code id="hero-install">python -m pip install calipy-ppl</code><button class="copy" data-copy="hero-install" type="button" hidden>Copy</button></div>
+      <p class="hero-status">Pre-alpha research software · Built on PyTorch + Pyro</p>
+    </div>
+    <div class="experiment" aria-label="Interactive measurement illustration">
+      <div class="experiment-top"><span>MEASUREMENT LAB / 01</span><span class="live-mark">EXPLORE</span></div>
+      <div class="signal-chain" aria-label="Physical signal flows through sensor response to readings"><span class="signal-node">Physical signal</span><span class="chain-arrow" aria-hidden="true">→</span><span class="signal-node">Response</span><span class="chain-arrow" aria-hidden="true">→</span><span class="signal-node dark">Readings</span></div>
+      <div class="chart-wrap"><svg class="chart" data-chart viewBox="0 0 540 300" role="img" aria-labelledby="chart-title chart-desc"><title id="chart-title">Sensor warm-up: expected response, simulated readings, and measurement variation</title>
+    <desc id="chart-desc">Illustrative normalized response over eight seconds. The shaded band is the expected response plus or minus two measurement standard deviations. It is not a posterior interval or a fitted result.</desc>
+    <g class="chart-grid"><path d="M54 205.5H498"/><text x="40" y="209.5" text-anchor="end">0.2</text><path d="M54 172H498"/><text x="40" y="176" text-anchor="end">0.4</text><path d="M54 138.5H498"/><text x="40" y="142.5" text-anchor="end">0.6</text><path d="M54 104.99999999999997H498"/><text x="40" y="108.99999999999997" text-anchor="end">0.8</text><path d="M54 71.5H498"/><text x="40" y="75.5" text-anchor="end">1.0</text><text x="54" y="263" text-anchor="middle">0</text><text x="165" y="263" text-anchor="middle">2</text><text x="276" y="263" text-anchor="middle">4</text><text x="387" y="263" text-anchor="middle">6</text><text x="498" y="263" text-anchor="middle">8</text></g>
+    <path d="M54.00,178.70 L59.55,172.48 L65.10,166.62 L70.65,161.09 L76.20,155.87 L81.75,150.96 L87.30,146.32 L92.85,141.95 L98.40,137.83 L103.95,133.95 L109.50,130.28 L115.05,126.83 L120.60,123.57 L126.15,120.50 L131.70,117.61 L137.25,114.88 L142.80,112.30 L148.35,109.88 L153.90,107.59 L159.45,105.43 L165.00,103.40 L170.55,101.48 L176.10,99.67 L181.65,97.97 L187.20,96.36 L192.75,94.84 L198.30,93.41 L203.85,92.07 L209.40,90.80 L214.95,89.60 L220.50,88.47 L226.05,87.40 L231.60,86.40 L237.15,85.45 L242.70,84.56 L248.25,83.72 L253.80,82.92 L259.35,82.18 L264.90,81.47 L270.45,80.81 L276.00,80.18 L281.55,79.59 L287.10,79.03 L292.65,78.50 L298.20,78.01 L303.75,77.54 L309.30,77.10 L314.85,76.68 L320.40,76.29 L325.95,75.92 L331.50,75.57 L337.05,75.25 L342.60,74.94 L348.15,74.64 L353.70,74.37 L359.25,74.11 L364.80,73.86 L370.35,73.63 L375.90,73.42 L381.45,73.21 L387.00,73.02 L392.55,72.84 L398.10,72.66 L403.65,72.50 L409.20,72.35 L414.75,72.20 L420.30,72.07 L425.85,71.94 L431.40,71.82 L436.95,71.71 L442.50,71.60 L448.05,71.50 L453.60,71.40 L459.15,71.31 L464.70,71.23 L470.25,71.15 L475.80,71.07 L481.35,71.00 L486.90,70.93 L492.45,70.87 L498.00,70.81 L498.00,107.66 L492.45,107.72 L486.90,107.78 L481.35,107.85 L475.80,107.92 L470.25,108.00 L464.70,108.08 L459.15,108.16 L453.60,108.25 L448.05,108.35 L442.50,108.45 L436.95,108.56 L431.40,108.67 L425.85,108.79 L420.30,108.92 L414.75,109.05 L409.20,109.20 L403.65,109.35 L398.10,109.51 L392.55,109.69 L387.00,109.87 L381.45,110.06 L375.90,110.27 L370.35,110.48 L364.80,110.71 L359.25,110.96 L353.70,111.22 L348.15,111.49 L342.60,111.79 L337.05,112.10 L331.50,112.42 L325.95,112.77 L320.40,113.14 L314.85,113.53 L309.30,113.95 L303.75,114.39 L298.20,114.86 L292.65,115.35 L287.10,115.88 L281.55,116.44 L276.00,117.03 L270.45,117.66 L264.90,118.32 L259.35,119.03 L253.80,119.77 L248.25,120.57 L242.70,121.41 L237.15,122.30 L231.60,123.25 L226.05,124.25 L220.50,125.32 L214.95,126.45 L209.40,127.65 L203.85,128.92 L198.30,130.26 L192.75,131.69 L187.20,133.21 L181.65,134.82 L176.10,136.52 L170.55,138.33 L165.00,140.25 L159.45,142.28 L153.90,144.44 L148.35,146.73 L142.80,149.15 L137.25,151.73 L131.70,154.46 L126.15,157.35 L120.60,160.42 L115.05,163.68 L109.50,167.13 L103.95,170.80 L98.40,174.68 L92.85,178.80 L87.30,183.17 L81.75,187.81 L76.20,192.72 L70.65,197.94 L65.10,203.47 L59.55,209.33 L54.00,215.55 Z" class="chart-band"/><path d="M54.00,197.13 L59.55,190.91 L65.10,185.04 L70.65,179.51 L76.20,174.30 L81.75,169.38 L87.30,164.75 L92.85,160.38 L98.40,156.26 L103.95,152.37 L109.50,148.71 L115.05,145.26 L120.60,142.00 L126.15,138.93 L131.70,136.03 L137.25,133.30 L142.80,130.73 L148.35,128.30 L153.90,126.01 L159.45,123.86 L165.00,121.82 L170.55,119.91 L176.10,118.10 L181.65,116.39 L187.20,114.78 L192.75,113.27 L198.30,111.84 L203.85,110.49 L209.40,109.22 L214.95,108.02 L220.50,106.89 L226.05,105.83 L231.60,104.82 L237.15,103.88 L242.70,102.98 L248.25,102.14 L253.80,101.35 L259.35,100.60 L264.90,99.90 L270.45,99.23 L276.00,98.60 L281.55,98.01 L287.10,97.45 L292.65,96.93 L298.20,96.43 L303.75,95.96 L309.30,95.52 L314.85,95.11 L320.40,94.72 L325.95,94.35 L331.50,94.00 L337.05,93.67 L342.60,93.36 L348.15,93.07 L353.70,92.79 L359.25,92.53 L364.80,92.29 L370.35,92.06 L375.90,91.84 L381.45,91.64 L387.00,91.44 L392.55,91.26 L398.10,91.09 L403.65,90.93 L409.20,90.77 L414.75,90.63 L420.30,90.49 L425.85,90.36 L431.40,90.24 L436.95,90.13 L442.50,90.02 L448.05,89.92 L453.60,89.83 L459.15,89.74 L464.70,89.65 L470.25,89.57 L475.80,89.50 L481.35,89.42 L486.90,89.36 L492.45,89.29 L498.00,89.23" class="chart-line"/><g class="chart-dots"><circle cx="54.00" cy="208.31" r="3.1"/><circle cx="67.88" cy="184.78" r="3.1"/><circle cx="81.75" cy="175.89" r="3.1"/><circle cx="95.63" cy="167.46" r="3.1"/><circle cx="109.50" cy="132.86" r="3.1"/><circle cx="123.38" cy="126.29" r="3.1"/><circle cx="137.25" cy="129.60" r="3.1"/><circle cx="151.13" cy="140.02" r="3.1"/><circle cx="165.00" cy="117.38" r="3.1"/><circle cx="178.88" cy="127.38" r="3.1"/><circle cx="192.75" cy="117.10" r="3.1"/><circle cx="206.63" cy="105.55" r="3.1"/><circle cx="220.50" cy="102.47" r="3.1"/><circle cx="234.38" cy="101.35" r="3.1"/><circle cx="248.25" cy="104.84" r="3.1"/><circle cx="262.13" cy="98.74" r="3.1"/><circle cx="276.00" cy="88.07" r="3.1"/><circle cx="289.88" cy="91.02" r="3.1"/><circle cx="303.75" cy="103.39" r="3.1"/><circle cx="317.63" cy="78.37" r="3.1"/><circle cx="331.50" cy="89.10" r="3.1"/><circle cx="345.38" cy="91.33" r="3.1"/><circle cx="359.25" cy="97.04" r="3.1"/><circle cx="373.13" cy="100.29" r="3.1"/><circle cx="387.00" cy="89.01" r="3.1"/><circle cx="400.88" cy="81.57" r="3.1"/><circle cx="414.75" cy="83.59" r="3.1"/><circle cx="428.63" cy="99.37" r="3.1"/><circle cx="442.50" cy="69.48" r="3.1"/><circle cx="456.38" cy="99.19" r="3.1"/><circle cx="470.25" cy="89.64" r="3.1"/><circle cx="484.13" cy="76.73" r="3.1"/><circle cx="498.00" cy="97.20" r="3.1"/></g>
+    <text class="axis-label" x="54" y="17">NORMALIZED RESPONSE</text><text class="axis-label" x="498" y="287" text-anchor="end">TIME / s</text></svg></div>
+      <div class="legend"><span><i></i>Expected response</span><span><i class="point"></i>Simulated readings</span><span><i class="band"></i>±2σ measurement band</span></div>
+      <div class="experiment-controls"><div class="scenario-buttons" role="group" aria-label="Choose a measurement scenario"><button data-scenario="warmup" aria-pressed="true" data-simulation-control disabled type="button">Warm-up</button><button data-scenario="drift" aria-pressed="false" data-simulation-control disabled type="button">Drift</button><button data-scenario="cycle" aria-pressed="false" data-simulation-control disabled type="button">Cyclic response</button></div>
+      <div class="slider-row"><label for="noise">Measurement noise σ</label><input id="noise" data-simulation-control disabled type="range" min="0.01" max="0.12" step="0.005" value="0.055"><output id="noise-value" for="noise">0.055</output></div>
+      <p class="formula" id="scenario-equation">m(t) = 0.90 − 0.65 exp(−t / 1.7)</p><p class="sr-only" id="scenario-description" aria-live="polite">A sensor settles toward a stable response after power-up.</p><span id="scenario-title" class="sr-only">Sensor warm-up</span></div>
+      <p class="simulation-note">Illustrative forward simulation. No fitting or CaliPy execution in the browser.<button data-reset data-simulation-control disabled type="button">Reset</button></p><noscript><p class="simulation-note">Enable JavaScript to change the scenario and measurement noise.</p></noscript>
+    </div></section>
+    <div class="tech-strip"><span>A PYTHON WORKFLOW FOR MEASUREMENT SCIENCE</span><strong>Sensor calibration</strong><strong>Measurement uncertainty</strong><strong>Instrument models</strong></div>
+    <section class="section" aria-labelledby="why-title"><div class="section-heading"><div><p class="eyebrow">Keep the experiment in focus</p><h2 id="why-title">Your model should explain<br><em>how the data happened.</em></h2></div><p>A measured value carries a story: a physical quantity, an instrument response, and sources of variation. Give each part a place in the model.</p></div>
+    <div class="benefits"><article class="benefit"><span class="index-label">01 / COMPOSE</span><h3>Build with scientific meaning.</h3><p>Express calibration, drift, response, and measurement noise as reusable effects. Keep the assumptions visible as the model grows.</p></article><article class="benefit"><span class="index-label">02 / REPRESENT</span><h3>Give dimensions a name.</h3><p>Measurements, instruments, and repetitions are scientific axes. Named dimensions help carry that meaning through tensor computations.</p></article><article class="benefit"><span class="index-label">03 / INFER</span><h3>Ask what the data support.</h3><p>Use probabilistic modeling to connect observed readings to unknown quantities. Choose inference for the model and examine its diagnostics.</p></article></div></section></div>
+    <section class="section ink-section" aria-labelledby="applications-title"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">Built around real scientific questions</p><h2 id="applications-title">From a sensor on the bench<br>to an instrument in the field.</h2></div><p>Explore three modeling problems, the assumptions they need, and where uncertainty enters.</p></div><div class="case-grid">
+      <article class="case-card"><svg class="case-art" viewBox="0 0 270 120" aria-hidden="true"><path class="axis" d="M15 12v91h241M15 53h241"/><path class="area" d="M18 93C51 60 80 36 116 25S211 19 251 16V35C178 33 151 35 118 43S48 82 18 112Z"/><path class="line" d="M18 101C52 71 81 46 116 34S211 26 251 25"/><g class="point"><circle cx="28" cy="98" r="3"/><circle cx="47" cy="73" r="3"/><circle cx="68" cy="73" r="3"/><circle cx="90" cy="41" r="3"/><circle cx="115" cy="39" r="3"/><circle cx="143" cy="28" r="3"/><circle cx="171" cy="36" r="3"/><circle cx="207" cy="20" r="3"/><circle cx="240" cy="32" r="3"/></g></svg><h3>Calibrate a changing sensor.</h3><p>Separate the steady signal from warm-up, drift, and measurement variation.</p><a class="text-link" href="/examples/#sensor-calibration">Explore sensor calibration <span aria-hidden="true">→</span></a></article>
+      <article class="case-card"><svg class="case-art" viewBox="0 0 270 120" aria-hidden="true"><g class="axis"><path d="M135 30L55 90M135 30l80 60"/><rect x="100" y="8" width="70" height="30" rx="3"/><rect x="20" y="80" width="70" height="30" rx="3"/><rect x="180" y="80" width="70" height="30" rx="3"/></g><g class="point"><circle cx="135" cy="23" r="5"/><circle cx="41" cy="96" r="3"/><circle cx="55" cy="92" r="3"/><circle cx="69" cy="97" r="3"/><circle cx="201" cy="94" r="3"/><circle cx="215" cy="98" r="3"/><circle cx="229" cy="93" r="3"/></g></svg><h3>Untangle sources of variation.</h3><p>Distinguish variation between objects from uncertainty in repeated measurements.</p><a class="text-link" href="/examples/#measurement-uncertainty">Explore uncertainty models <span aria-hidden="true">→</span></a></article>
+      <article class="case-card"><svg class="case-art" viewBox="0 0 270 120" aria-hidden="true"><path class="axis" d="M27 102H250M135 12v93M135 23L42 101M135 23l95 78"/><path class="line" d="M72 80a92 92 0 0 1 126-1M135 23v64"/><g class="point"><circle cx="135" cy="23" r="5"/><circle cx="43" cy="101" r="4"/><circle cx="230" cy="101" r="4"/></g><circle cx="135" cy="101" r="8" fill="none" stroke="#82b4ff"/><path class="line" d="M127 101h16"/></svg><h3>Make instrument errors explicit.</h3><p>Connect geometric relationships, calibration parameters, and noisy observations.</p><a class="text-link" href="/examples/#instrument-models">Explore instrument models <span aria-hidden="true">→</span></a></article>
+    </div></div></section>
+    <section class="section wrap proof-section" aria-labelledby="proof-title"><div class="section-heading"><div><p class="eyebrow">Show the work / synthetic calibration study</p><h2 id="proof-title">A physical explanation.<br><em>A result you can reproduce.</em></h2></div><p>Fit a sensor’s settling response, then compare predictions against measurements held out before fitting.</p></div><div class="proof-layout"><figure class="evidence-figure"><img src="/downloads/warmup/warmup-fit.svg" width="1000" height="540" loading="lazy" alt="CaliPy warm-up fit follows the changing simulated sensor response while a constant baseline misses it."><figcaption>Simulated readings · MAP point fit · known noise. No customer performance claim.</figcaption></figure><div><p class="eyebrow">Held-out prediction error</p><div class="metric-grid"><div><strong>1.211<small> °C</small></strong><span>Constant baseline</span></div><div class="metric-highlight"><strong>0.168<small> °C</small></strong><span>Warm-up model</span></div></div><p>One small example. The data, code, fitted quantities, and limitations are all there to inspect.</p><a class="text-link" href="/examples/sensor-warmup/">Explore the worked example <span aria-hidden="true">→</span></a></div></div></section>
+    <section class="section wrap code-layout" aria-labelledby="code-title"><div><p class="eyebrow">A look at the next interface</p><h2 id="code-title">Small blocks.<br><em>A complete scientific idea.</em></h2><p class="lead">A prior describes an unknown level. A measurement law describes the readings. A block connects them. The scientific graph stays visible in Python.</p><span class="tag">DEVELOPMENT PREVIEW</span><p class="small-note">This block API is from the current development checkout. The published package and documentation use an earlier interface.</p><a class="text-link" href="/get-started/#development">Explore the development workflow <span aria-hidden="true">→</span></a></div>
+      <div class="code-window"><div class="code-title"><span>unknown_mean.py · development API</span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div><pre><code><span class="kw">import</span> calipy <span class="kw">as</span> cp
+<span class="kw">import</span> pyro.distributions <span class="kw">as</span> dist
+
+<span class="comment"># What is the level behind these readings?</span>
+level = cp.LatentParameter(
+    <span class="str">"level"</span>, prior=dist.Normal(0., 2.)
+)
+measurement = cp.RandomVariable.Normal(
+    <span class="str">"reading"</span>, scale=0.15
+)
+
+<span class="kw">@cp.block</span>
+<span class="kw">def</span> model():
+    <span class="kw">return</span> measurement(level())</code></pre><p class="code-caption">Model first. Observations and inference next.<br><a href="/get-started/#development">Get the complete development example →</a></p></div></section>
+    <section class="section preview-section" aria-labelledby="forge-title"><div class="wrap preview-layout"><figure class="product-shot"><a href="/tour/"><img src="/assets/forge-model.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="CaliPy Model Forge showing the first-measurement tutorial in the Model Focus layout"></a><figcaption>MODEL FORGE / CURRENT DEVELOPMENT CAPTURE / OCTOBER 2026</figcaption></figure><div class="preview-copy"><p class="eyebrow">See the structure</p><h2 id="forge-title">A workbench<br>for your model.</h2><p>Model Forge brings model structure, scientific objects, and inspection into a graphical workspace over CaliPy’s core model contracts.</p><p>It is an experimental local workbench, currently separate from the published Python package.</p><a class="text-link" href="/tour/">Take the product tour <span aria-hidden="true">→</span></a></div></div></section>
+    <section class="section wrap agent-layout" aria-labelledby="agents-title"><div><p class="eyebrow">For people. And their tools.</p><h2 id="agents-title">Give your assistant<br><em>the right starting point.</em></h2><p class="lead">Clear package identity, public references, and honest integration boundaries. Spend less time guessing which CaliPy interface your agent should use.</p><a class="text-link" href="/agents/">Read the agent integration guide <span aria-hidden="true">→</span></a></div><ul class="agent-files"><li><a href="/agents/"><span><strong>Agent guide</strong><small>Public Python workflow and development MCP status</small></span><span aria-hidden="true">→</span></a></li><li><a href="/llms.txt"><span><strong>llms.txt</strong><small>A concise index of public project resources</small></span><span aria-hidden="true">→</span></a></li><li><a href="/project.json"><span><strong>project.json</strong><small>Machine-readable identity, links, and availability</small></span><span aria-hidden="true">→</span></a></li></ul></section>
+    <section class="research wrap" aria-labelledby="research-title"><div><p class="eyebrow">From measurement science</p><h2 id="research-title" class="research-title">Developed by Dr. Jemil Avers Butt<br>at Atlas Optimization.</h2><p>CaliPy grows out of work on probabilistic instrument models, calibration, and scientific uncertainty.</p></div><div><p class="eyebrow">Read the research / JISDM 2025</p><h3>Building and Solving Probabilistic<br>Instrument Models with CaliPy</h3><a class="text-link" href="https://doi.org/10.5445/IR/1000179733">Read the paper <span aria-hidden="true">→</span></a><p class="small-note">Research report / preprint · DOI: 10.5445/IR/1000179733</p></div></section>
+    <section class="section wrap faq-grid" aria-labelledby="faq-title"><div><p class="eyebrow">Before your first model</p><h2 id="faq-title">A few useful<br>answers.</h2></div><div class="faq"><details><summary>What is CaliPy?</summary><p>CaliPy is a Python library for probabilistic instrument modeling and calibration, built on PyTorch and Pyro. It helps describe how measurements are generated, how scientific effects combine, and which quantities are uncertain.</p></details><details><summary>What can I use today?</summary><p>The public Python package is available as calipy-ppl, with source and documentation linked on this site. The newer block API, Model Forge, and optional agent bridge shown here are development previews. They are not all included in the published package.</p></details><details><summary>Does CaliPy replace PyTorch or Pyro?</summary><p>CaliPy builds on them. Torch provides tensor computation and differentiation; Pyro provides probabilistic inference. CaliPy adds structures for composing and inspecting scientific measurement models.</p></details><details><summary>Is it production-ready?</summary><p>CaliPy is pre-alpha research software. APIs may change. Validate a model against your scientific assumptions, use version-matched documentation, and inspect inference diagnostics before relying on results.</p></details><details><summary>Can I use it commercially?</summary><p>CaliPy uses the Prosperity Public License. Review the <a href="https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md">complete license terms</a> for your intended use, and <a href="mailto:jemil.butt@atlasoptimization.com?subject=CaliPy%20project%20inquiry">contact the project</a> about commercial licensing or collaboration.</p></details><details><summary>Can an AI agent run CaliPy?</summary><p>Coding assistants can work with the public Python package and its documentation. An optional local MCP bridge exists as a development prototype; it is not a public hosted service or registry release. The <a href="/agents/">agent guide</a> explains the current boundaries.</p></details></div></section><section class="contact-band wrap" id="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Your next experiment</p><h2 id="contact-title">Have measurements.<br>Need a better model?</h2><p>Start exploring CaliPy, or plan a focused modeling pilot for your instrument, your data, and the question you need to answer.</p></div><div><div class="actions"><a class="button" href="/get-started/">Try CaliPy <span aria-hidden="true">→</span></a><a class="button outline" href="/services/">Explore a modeling pilot <span aria-hidden="true">↗</span></a></div><p class="small-note">Proposed pilot: one measurement question, a runnable model, and an evidence report.<br>Scope, price, and availability agreed individually.</p></div></section></main>
+<footer class="site-footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/" aria-label="CaliPy home"><svg class="brand-mark" viewBox="275 180 705 800" aria-hidden="true" focusable="false"><image href="/assets/calipy-prism.png" width="1254" height="1254"/></svg><img class="brand-wordmark" src="/assets/calipy-wordmark.svg" width="795" height="133" alt="CaliPy"></a><p>Probabilistic calibration. Inspectable science.<br>A project by Dr. Jemil Avers Butt / Atlas Optimization GmbH.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="https://github.com/atlasoptimization/calipy">GitHub ↗</a><a href="https://pypi.org/project/calipy-ppl/">PyPI ↗</a><a href="https://atlasoptimization.github.io/calipy/">Docs ↗</a><a href="/tour/">Product tour</a><a href="/services/">Work with us</a><a href="/learn/sensor-calibration/">Calibration guide</a><a href="/agents/">For agents</a><a href="https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md">License ↗</a></nav></div><div class="footer-bottom"><span>© 2026 CaliPy · Pre-alpha research software. APIs may evolve.</span><span><a href="/llms.txt">llms.txt</a> · <a href="/project.json">Project metadata</a> · <a href="mailto:jemil.butt@atlasoptimization.com">Contact</a></span></div></div></footer>
+<span class="sr-only" role="status" id="copy-status" aria-live="polite"></span></body></html>

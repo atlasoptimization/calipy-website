@@ -1,38 +1,74 @@
 # CaliPy website
 
-Minimal static homepage for `calpymodels.com`. `index.html` contains the page,
-styles, and illustrative SVG; no installation, build, or application server is
-required. Open it directly in a browser to preview it.
+Independent, static public website for **https://calpymodels.com**. Its primary
+route is trying CaliPy; the secondary route is a project or integration inquiry.
+The website has no hosted scientific runtime, accounts, analytics, or form backend.
 
-## Deploy using Git
+## Files and editing
 
-After reviewing and committing the files, push this repository to GitHub. In
-your hosting provider's Git deployment settings, select this repository and the
-`main` branch. The published page is `index.html` at the repository root. There
-is no build command. Configure the web root or deployment destination according
-to your provider's instructions, and enable HTTPS for the domain.
+- `content/pages.mjs` owns page copy, shared links, and project identity.
+- `tools/build.mjs` generates the eight HTML pages, `robots.txt`, `sitemap.xml`,
+  `llms.txt`, `project.json`, and the text agent guide.
+- `assets/site.css` owns presentation; `assets/site.js` owns optional interaction.
+- The site follows the GUI's electron-blue chrome: near-black surfaces,
+  blue accents at hue 215, and sans-serif type. `assets/calipy-prism.png` and
+  `assets/calipy-wordmark.svg` are unchanged copies of the GUI's active supplied
+  artwork. The header frames the prism with the same SVG view box as the GUI;
+  the PNG also supplies the favicon. Do not replace these with improvised marks.
+- `assets/simulation.js` supplies the same illustrative forward chart to the
+  static build and browser. It is not CaliPy inference or a scientific result.
+- `content/social-card.html` is the source for the 1200 × 630 social preview.
+  Capture it at that size after brand changes, saving `assets/social-card.jpg`.
+- `downloads/unknown_mean.py` is a tested **development API** example, with the
+  library license in `downloads/LICENSE.md`. It is not promised to work with the
+  older public package API.
 
-Whether pushes deploy automatically or require a manual pull depends on the
-provider. The domain and hosting have not been configured by creating this page.
+No dependencies need installing. With Node.js available:
 
-## Source ownership
+```sh
+node tools/build.mjs
+node tools/check.mjs
+node tools/preview.mjs
+```
 
-- This repository owns the homepage, its presentation, and deployment notes.
-- The separate CaliPy repository owns the scientific library, examples, and
-  technical documentation. This page currently links to its existing docs.
-- The initial copy was checked against the sibling `calipy_codex/README.md`,
-  `docs/source/index.rst`, and `docs/source/start/modeling_idea.md` on 2026-10-12.
-- The diagram is an explanatory schematic, not a fitted result or benchmark.
-- There is no automated content synchronization yet. Consult the current CaliPy
-  source before changing capability claims; do not duplicate its documentation.
-- The existing public documentation is older than the local checkout. The page
-  links to its working root URL; publishing the newer docs is a separate task.
-  Do not add links to newer documentation pages before they are published.
+Open the localhost URL printed by the preview. Use Ctrl+C to stop it. HTTP preview
+is required because the site uses root-relative URLs and JavaScript modules.
+The generated public files are tracked so hosting needs **no build command**.
+Review and commit both source and generated changes together.
 
-## First-page brief
+## Deployment
 
-Introduce CaliPy to scientists and engineers working with measurements and
-calibration. Keep the page concise, explain the modeling idea, and lead visitors
-to the maintained documentation. Preserve the visible pre-alpha status. The
-current direction uses warm paper, dark green type, a restrained rust accent,
-and a schematic model instead of stock photography.
+Keep the existing Git deployment pointed at this website repository. Serve the
+repository root, including assets and directory index files. See `DEPLOYMENT.md`
+for DNS/HTTPS, crawler, canonical-host, and post-deployment checks. Nothing in
+these files changes DNS or hosting configuration or submits search-engine forms.
+
+## Content and provenance
+
+Technical context is read from the separate sibling `../calipy_codex/` checkout;
+website changes belong here. `AGENTS.md` records the reference workflow.
+`EVIDENCE.md` records inspected sources, public availability, and verification.
+The original library receives no website files or dependencies.
+
+Public release documentation is older than the development checkout. Keep that
+distinction visible in previews, installation guidance, and machine-readable
+metadata. The agent bridge is an optional local development prototype, not a
+public MCP service. Do not invent endpoints, testimonials, adoption counts,
+release compatibility, guarantees, or unapproved service offerings.
+
+The organization contact comes from CaliPy's maintained package metadata.
+Contact buttons open a draft email; this site does not send or store messages.
+Update preview screenshots when the product changes. New code examples must be
+executed against the intended interface before publishing.
+
+## Growth content
+
+`content/growth-pages.mjs` owns the worked study, product tour, service draft, and
+calibration guide. All pages inherit `assets/site.css` and the common build
+template; avoid page-specific copies of theme rules. Numeric study claims read
+the executed `downloads/warmup/warmup-results.json`, checked against its CSV.
+
+See `GROWTH_PLAN.md` for the six priorities, source-site observations, launch
+dependencies, business decisions, and the measurement plan. Analytics is not
+enabled. Current GUI captures are `assets/forge-*.jpg`; their provenance and
+scientific-example execution are recorded in `EVIDENCE.md`.

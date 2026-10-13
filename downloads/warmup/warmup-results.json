@@ -1,0 +1,35 @@
+{
+  "data_kind": "simulated",
+  "seed": 23,
+  "n_train": 48,
+  "n_held_out": 16,
+  "split": "every fourth observation held out, starting at index 0",
+  "method": "MAP point estimate using CaliPy SVI.map",
+  "steps": 1500,
+  "learning_rate": 0.025,
+  "known_noise_sd": 0.15,
+  "units": {
+    "reading": "illustrative degrees Celsius",
+    "time": "minutes"
+  },
+  "truth": {
+    "steady": 24.0,
+    "drop": 4.0,
+    "tau": 1.8
+  },
+  "estimates": {
+    "steady": 23.966114044189453,
+    "drop": 3.9833226203918457,
+    "tau": 1.7244592905044556
+  },
+  "held_out_rmse": {
+    "constant_training_mean": 1.2110990285873413,
+    "warmup_model": 0.16757556796073914
+  },
+  "versions": {
+    "python": "3.14.8",
+    "torch": "2.14.1+cpu",
+    "pyro": "1.9.1"
+  },
+  "limitations": "Synthetic interpolation example with correct model family and known noise; no customer result, extrapolation test, posterior interval, or convergence guarantee."
+}

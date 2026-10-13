@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="795" height="133" viewBox="-6 -4 795 133">
+  <title>CaliPy Prism Core — original geometric wordmark</title>
+  <desc>Six individually editable traced letter paths, extracted from the user-supplied Prism Core Master graphic. The A is one solid blue color. No glow, no gradient, no raster image.</desc>
+  <g id="calipy-wordmark" aria-label="CALIPY">
+    <path id="letter-C" fill="#FFFFFF" fill-rule="evenodd" d="M 121,32 C 107,16 87,9 64,9 C 33,9 10,30 10,62 C 10,94 31,115 64,115 C 89,115 110,105 122,90 L 108,81 C 97,93 83,98 65,98 C 43,98 29,83 29,62 C 29,40 43,26 65,26 C 84,26 98,33 107,43 L 121,36 Z"/>
+    <path id="letter-A" fill="#006BFC" fill-rule="evenodd" d="M 294,112 L 229,12 L 162,112 L 163,113 L 184,113 L 221,57 L 229,47 L 272,113 L 293,113 Z"/>
+    <path id="letter-L" fill="#FFFFFF" fill-rule="evenodd" d="M 340,14 L 339,15 L 339,112 L 340,113 L 418,113 L 419,112 L 419,97 L 418,96 L 360,96 L 358,94 L 358,15 L 357,14 Z"/>
+    <path id="letter-I" fill="#FFFFFF" fill-rule="evenodd" d="M 462,14 L 461,15 L 461,112 L 462,113 L 479,113 L 480,112 L 480,15 L 479,14 Z"/>
+    <path id="letter-P" fill="#FFFFFF" fill-rule="evenodd" d="M 529,15 L 597,15 C 617,15 627,29 627,48 C 627,68 615,81 597,82 L 549,82 L 549,113 L 529,113 Z M 549,31 L 594,31 C 603,31 608,38 608,48 C 608,59 602,66 594,66 L 549,66 Z"/>
+    <path id="letter-Y" fill="#FFFFFF" fill-rule="evenodd" d="M 647,14 L 692,66 L 700,74 L 700,112 L 701,113 L 718,113 L 719,112 L 719,75 L 757,33 L 772,15 L 772,14 L 749,14 L 711,57 L 709,57 L 671,14 Z"/>
+  </g>
+</svg>

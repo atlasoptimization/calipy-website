@@ -1,0 +1,34 @@
+CaliPy sensor warm-up worked example
+Prepared and executed: 2026-10-13
+
+Source inspiration:
+  CaliPy Sphinx introductory example 04_warmup_heteroscedastic
+  docs/build/html/generated/introductory/04_warmup_heteroscedastic.html
+  examples/introductory/04_warmup_heteroscedastic.py
+
+This standalone adaptation fits the explicit three-parameter response with
+known constant noise. It adds a train/held-out split and a constant baseline.
+It is not a reproduction of the original heteroscedastic two-model study.
+
+CaliPy development source snapshot: 6068298c818c84385ef486e255379bd4bc03425b
+Requires the development block API. A version string alone cannot identify
+the interface, and the public PyPI wheel may not expose these APIs.
+Development source access: inquire via https://calpymodels.com/get-started/
+
+Data: entirely simulated; seed 23. No customer data or customer outcomes.
+Training: 48 observations. Held out: 16 (indices 0, 4, 8, ..., 60).
+Inference: SVI.map, 1500 steps, learning rate 0.025, seed 23.
+Noise: known Normal standard deviation 0.15 illustrative degrees Celsius.
+Reference and prior details: sensor_warmup.py and warmup-results.json.
+Validation: finite predictions, output shape, parameter recovery bounds, and
+held-out RMSE below the constant training-mean baseline all passed.
+Interpretation: point fit; no posterior interval or convergence guarantee.
+Holdout tests interpolation within one synthetic run, not transfer to new
+sensors, future runs, different conditions, or real-world performance.
+
+Reproduce after obtaining a compatible development environment:
+  python sensor_warmup.py --output warmup-output
+The script regenerates the CSV, results JSON, and SVG. Small numerical
+differences may occur across runtime versions. Tested versions are in JSON.
+
+Code license: ../LICENSE.md (Prosperity Public License Development Draft).

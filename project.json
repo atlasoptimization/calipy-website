@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "name": "CaliPy",
+  "alternate_name": "Calibration Library for Python",
+  "url": "https://calpymodels.com/",
+  "description": "Probabilistic calibration and scientific modeling in Python. Build instrument models, quantify measurement uncertainty, and connect scientific effects with CaliPy.",
+  "status": "pre-alpha",
+  "language": "Python",
+  "foundation": [
+    "PyTorch",
+    "Pyro"
+  ],
+  "package": {
+    "distribution": "calipy-ppl",
+    "import_name": "calipy",
+    "url": "https://pypi.org/project/calipy-ppl/",
+    "installation": "python -m pip install calipy-ppl"
+  },
+  "public_resources": {
+    "documentation": "https://atlasoptimization.github.io/calipy/",
+    "source": "https://github.com/atlasoptimization/calipy",
+    "license": "https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md",
+    "paper": "https://doi.org/10.5445/IR/1000179733",
+    "getting_started": "https://calpymodels.com/get-started/",
+    "applications": "https://calpymodels.com/examples/",
+    "worked_example": "https://calpymodels.com/examples/sensor-warmup/",
+    "product_tour": "https://calpymodels.com/tour/",
+    "services": "https://calpymodels.com/services/",
+    "calibration_guide": "https://calpymodels.com/learn/sensor-calibration/",
+    "agent_guide": "https://calpymodels.com/agents/",
+    "llms_index": "https://calpymodels.com/llms.txt"
+  },
+  "availability": {
+    "public_python_package": true,
+    "block_api": "development preview; not guaranteed in the public package",
+    "model_forge": "experimental local development workbench; not a hosted app",
+    "mcp_bridge": "optional local development prototype; not published to a registry",
+    "hosted_inference_api": false,
+    "hosted_mcp_endpoint": false
+  },
+  "contact": {
+    "email": "jemil.butt@atlasoptimization.com",
+    "purpose": "Project, collaboration, commercial licensing, and development-access inquiries; scope agreed individually"
+  },
+  "services": {
+    "status": "proposed engagement format; scope and commercial terms agreed individually",
+    "page": "https://calpymodels.com/services/",
+    "booking_available": false
+  },
+  "documentation_note": "The public package/documentation and current development previews use different interfaces. Inspect the installed API and use matching documentation.",
+  "metadata_reviewed": "2026-10-13"
+}

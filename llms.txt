@@ -1,0 +1,28 @@
+# CaliPy
+
+> CaliPy (Calibration Library for Python) is a pre-alpha Python library for probabilistic instrument modeling, calibration, and measurement uncertainty, built on PyTorch and Pyro.
+
+The public package is named calipy-ppl and is imported as calipy. Public release documentation and current development previews describe different interfaces. The newer block API, experimental Model Forge workbench, and optional local MCP bridge are development previews. This website provides no hosted inference API or remote MCP endpoint. The bridge is not published to a package registry.
+
+## Project resources
+
+- [Get started](https://calpymodels.com/get-started/): Public installation and development-preview boundaries.
+- [Applications](https://calpymodels.com/examples/): Sensor calibration, measurement uncertainty, and instrument models.
+- [Agent guide](https://calpymodels.com/agents/guide.md): Version-aware workflow and integration availability.
+- [Project metadata](https://calpymodels.com/project.json): Machine-readable identity and current availability.
+- [Public documentation](https://atlasoptimization.github.io/calipy/): Earlier public interface; use documentation matching the installed package.
+- [Public source](https://github.com/atlasoptimization/calipy): Public repository and issue tracker.
+- [PyPI package](https://pypi.org/project/calipy-ppl/): Distribution files and package requirements.
+
+## Worked material
+
+- [Sensor warm-up study](https://calpymodels.com/examples/sensor-warmup/): Executed development example with simulated data, a held-out baseline comparison, code, and limitations.
+- [Product tour](https://calpymodels.com/tour/): Current development GUI screenshots and a guided workflow; not a hosted app.
+- [Calibration field guide](https://calpymodels.com/learn/sensor-calibration/): Questions, measurement design, inference, and validation.
+- [Modeling pilot](https://calpymodels.com/services/): Proposed engagement format with individually agreed scope and commercial terms.
+
+## Optional
+
+- [Research paper](https://doi.org/10.5445/IR/1000179733): Jemil Avers Butt, Building and Solving Probabilistic Instrument Models with CaliPy (2025), research report / preprint.
+- [License](https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md): Prosperity Public License; consult the actual terms.
+- [Project contact](mailto:jemil.butt@atlasoptimization.com): Discuss a project, commercial licensing, or development access.

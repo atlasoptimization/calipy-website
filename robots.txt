@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /content/
+Disallow: /tools/
+Disallow: /AGENTS.md
+Disallow: /README.md
+Disallow: /DEPLOYMENT.md
+Disallow: /EVIDENCE.md
+Disallow: /GROWTH_PLAN.md
+
+Sitemap: https://calpymodels.com/sitemap.xml
