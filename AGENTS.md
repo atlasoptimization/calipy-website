@@ -28,9 +28,14 @@ provenance. Preserve the CaliPy spelling and the exact user-owned domain spellin
 
 ## Site workflow
 
-- Edit copy/identity in `content/pages.mjs`, then run `node tools/build.mjs`.
+- Edit copy in the relevant `content/*.mjs` module and shared identity in
+  `content/pages.mjs`, then run `node tools/build.mjs`.
   HTML and discovery outputs are tracked for buildless hosting; do not let
   generated files diverge from their sources.
+- Headings should describe the page content and visitor task. Preserve the
+  white/blue style, but avoid generic business mottos repeated across pages.
+- Preserve existing public routes, anchors, examples, and downloads when expanding
+  the site. Label recorded, illustrative, scripted, and live behavior accurately.
 - Keep the website static and dependency-free unless a task needs otherwise.
   Read `DEPLOYMENT.md` before changing publication or crawler configuration.
 - Run `node tools/check.mjs`; check public links when changing destinations.

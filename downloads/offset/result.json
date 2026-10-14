@@ -1,0 +1,37 @@
+{
+  "data_kind": "illustrative fixed readings",
+  "reference_celsius": 20.0,
+  "reference_assumption": "exact for this lesson",
+  "noise_sd_celsius": 0.1,
+  "prior": {
+    "family": "Normal",
+    "mean": 0.0,
+    "sd": 1.0
+  },
+  "readings_celsius": [
+    20.40999984741211,
+    20.520000457763672,
+    20.360000610351562,
+    20.489999771118164,
+    20.440000534057617,
+    20.479999542236328,
+    20.389999389648438,
+    20.510000228881836
+  ],
+  "seed": 31,
+  "inference": {
+    "method": "NUTS",
+    "warmup": 200,
+    "draws": 500,
+    "chains": 1
+  },
+  "posterior_mean_celsius": 0.44758930802345276,
+  "posterior_sd_celsius": 0.03234486281871796,
+  "analytic_mean_celsius": 0.44943824987137665,
+  "analytic_sd_celsius": 0.03533326266687867,
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "pyro": "1.9.1"
+  },
+  "limitations": "One short teaching chain; no convergence claim. Known independent noise and exact reference. Offset only: gain, drift, correlations and reference uncertainty are excluded."
+}

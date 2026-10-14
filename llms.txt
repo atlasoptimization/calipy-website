@@ -4,8 +4,22 @@
 
 The public package is named calipy-ppl and is imported as calipy. Public release documentation and current development previews describe different interfaces. The newer block API, experimental Model Forge workbench, and optional local MCP bridge are development previews. This website provides no hosted inference API or remote MCP endpoint. The bridge is not published to a package registry.
 
+## Products and access
+
+Core is free for noncommercial use under the Prosperity Public License. Studio Community & Academic is one proposed noncommercial edition; installable preview access is reviewed individually. Studio Business commercial terms and pricing are not finalized. CaliPy Server is a planned customer-owned AWS offering, with infrastructure and AI-provider costs separate. No public server endpoint or purchase checkout exists. The models-and-effects marketplace is planned, with no live listings.
+
+- [Products](https://calpymodels.com/products/): Four editions with pricing and availability status.
+- [Access requests](https://calpymodels.com/access/): Prepare an email; no automatic enrollment or download.
+- [Marketplace](https://calpymodels.com/marketplace/): Proposed sharing, selling, and buying of models and effects.
+
 ## Project resources
 
+- [Learning resources](https://calpymodels.com/resources/): Self-guided written lessons, examples, and version-aware references.
+- [Calibration concepts](https://calpymodels.com/calibration/): Sensor response, quantities, effects, observations, and uncertainty.
+- [Demo gallery](https://calpymodels.com/gallery/): Filterable browser demos, guided examples, model code, and screenshots.
+- [Sensor-offset calibration](https://calpymodels.com/learn/sensor-offset/): Five-step lesson, executed development Python, illustrative readings, and recorded posterior evidence.
+- [Composable effects](https://calpymodels.com/effects/): Interfaces, reuse, and compatibility-aware replacement in development.
+- [About](https://calpymodels.com/about/): Project purpose and research background.
 - [Get started](https://calpymodels.com/get-started/): Public installation and development-preview boundaries.
 - [Applications](https://calpymodels.com/examples/): Sensor calibration, measurement uncertainty, and instrument models.
 - [Agent guide](https://calpymodels.com/agents/guide.md): Version-aware workflow and integration availability.

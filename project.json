@@ -16,7 +16,60 @@
     "url": "https://pypi.org/project/calipy-ppl/",
     "installation": "python -m pip install calipy-ppl"
   },
+  "products": [
+    {
+      "id": "core",
+      "name": "CaliPy Core",
+      "status": "Public Python package",
+      "pricing": "Free for noncommercial use",
+      "availability": "The public package is available now. Follow documentation matching the installed API; the new block API is still a development preview.",
+      "url": "https://calpymodels.com/products/#core"
+    },
+    {
+      "id": "community",
+      "name": "Studio Community & Academic",
+      "status": "Preview · access by request",
+      "pricing": "Planned: free for noncommercial use",
+      "availability": "Try the browser demo today. Installable preview access is reviewed individually; there is no general Studio download yet. A request does not guarantee access or a release date.",
+      "url": "https://calpymodels.com/products/#community"
+    },
+    {
+      "id": "business",
+      "name": "Studio Business",
+      "status": "Proposed commercial edition",
+      "pricing": "Price to be announced",
+      "availability": "The commercial edition is being defined. You can discuss preview access or a scoped modeling pilot now; no checkout, subscription, or production support commitment is offered on this site.",
+      "url": "https://calpymodels.com/products/#business"
+    },
+    {
+      "id": "server",
+      "name": "CaliPy Server",
+      "status": "Planned deployment offering",
+      "pricing": "Pricing under development",
+      "availability": "A local agent bridge exists as a development prototype. The AWS deployment product, remote access controls, distribution, and billing remain planned. Register interest to discuss the deployment you need.",
+      "url": "https://calpymodels.com/products/#server"
+    }
+  ],
+  "marketplace": {
+    "status": "planned; no listings, purchases, seller accounts, or downloads",
+    "type": "models and effects",
+    "url": "https://calpymodels.com/marketplace/"
+  },
+  "access_requests": {
+    "url": "https://calpymodels.com/access/",
+    "delivery": "user-reviewed email handoff; no form backend",
+    "newsletter_subscription_automatic": false
+  },
   "public_resources": {
+    "calibration": "https://calpymodels.com/calibration/",
+    "gallery": "https://calpymodels.com/gallery/",
+    "guided_calibration": "https://calpymodels.com/learn/sensor-offset/",
+    "products": "https://calpymodels.com/products/",
+    "in_action": "https://calpymodels.com/in-action/",
+    "resources": "https://calpymodels.com/resources/",
+    "effects": "https://calpymodels.com/effects/",
+    "about": "https://calpymodels.com/about/",
+    "first_lesson": "https://calpymodels.com/learn/first-model/",
     "documentation": "https://atlasoptimization.github.io/calipy/",
     "source": "https://github.com/atlasoptimization/calipy",
     "license": "https://github.com/atlasoptimization/calipy/blob/master/LICENSE.md",
@@ -50,5 +103,5 @@
     "booking_available": false
   },
   "documentation_note": "The public package/documentation and current development previews use different interfaces. Inspect the installed API and use matching documentation.",
-  "metadata_reviewed": "2026-10-13"
+  "metadata_reviewed": "2026-10-14"
 }

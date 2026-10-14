@@ -50,3 +50,14 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => {
   document.querySelector('.mobile-menu').open = false;
 }));
+
+const accessForm = document.querySelector('#access-form');
+if (accessForm) {
+  const { setupAccessForm } = await import('./access-request.js');
+  setupAccessForm(accessForm);
+}
+
+if (document.querySelector('[data-guide], [data-gallery-filters]')) {
+  const { setupLearning } = await import('./learning.js');
+  setupLearning();
+}

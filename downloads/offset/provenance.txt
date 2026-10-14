@@ -1,0 +1,28 @@
+CaliPy sensor-offset lesson, 2026-10-14
+
+Standalone teaching example prepared for calpymodels.com. Uses the established
+LatentParameter -> Normal reading -> block -> NUTS workflow, as demonstrated in
+CaliPy's introductory unknown-mean example. No scientific core API was changed.
+
+Executed against development checkout:
+773f0beffed96f38fd4b1867df68e958db223dd0
+Python environment: worktree-local .venv; calipy.__file__ resolved in that checkout.
+Command: MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 timeout 90s .venv/bin/python
+  /tmp/calipy-site-content.d71JOf/downloads/sensor_offset.py
+  --output /tmp/calipy-site-content.d71JOf/downloads/offset
+Exit status: 0.
+
+Illustrative fixed readings, exact reference 20 degrees Celsius, known Normal
+noise SD 0.1 degrees Celsius, offset prior Normal(0, 1) degrees Celsius.
+NUTS: 200 warm-up, 500 draws, one chain, seed 31.
+Recorded posterior mean 0.4475893080; SD 0.0323448628 degrees Celsius.
+Independent analytic mean 0.4494382499; SD 0.0353332627 degrees Celsius.
+Checks: scalar posterior target, 500 finite samples, mean and SD within finite
+Monte Carlo tolerances of the analytic Normal-posterior calculation.
+
+This is a small numerical smoke check, not a convergence or accuracy benchmark.
+No real sensor, certified reference, traceable calibration or customer result is
+represented. Correction plot reuses calibration data, not a held-out validation.
+The older public package may lack the development block API.
+See result.json for runtime versions and LICENSE.md one directory above for
+license and project attribution.

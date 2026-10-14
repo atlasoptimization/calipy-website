@@ -1,6 +1,6 @@
 # Website content evidence
 
-Reviewed 2026-10-13. This is a maintenance record, not a public capability roster.
+Reviewed 2026-10-14. This is a maintenance record, not a public capability roster.
 
 ## Scientific sources
 
@@ -32,8 +32,8 @@ Read from the authorized sibling `../calipy_codex/` checkout at commit
   development checkout. Version equality must not imply API parity.
 - Public source: https://github.com/atlasoptimization/calipy (master branch).
 - Public docs: https://atlasoptimization.github.io/calipy/ (older interface).
-- The development repository is not anonymously accessible via the GitHub API;
-  its private URL is not offered as a public acquisition route.
+- Anonymous access to the development repository was not established during
+  earlier verification; it is not offered as a public acquisition route.
 - Paper: https://doi.org/10.5445/IR/1000179733 — Jemil Avers Butt (2025),
   *Building and Solving Probabilistic Instrument Models with CaliPy*.
   KIT record: https://publikationen.bibliothek.kit.edu/1000179733.
@@ -178,3 +178,132 @@ customer proof, or hosted inference service has been added.
 ## Interactive browser demo — 2026-10-13
 
 The demo reuses the real GUI renderer and inspection/results components. The existing first-measurement tutorial was exported in an isolated Python workspace. Eight illustrative readings, Normal(0, 5) prior for scalar mu, known noise 0.2, NUTS 100 warm-up / 320 retained draws / seed 17, 64 posterior-predictive draws. Mean 1.999335, SD 0.068209; independent conjugate reference mean 1.999600, SD 0.070704. The downloadable equivalent Python example executed successfully with the same summary. This short single chain is teaching evidence, not proof of convergence or a benchmark. Exact source commit, tutorial hash and runtime versions are in `demo/recordings/first-measurement.json`. A build-time mode guard rejects all bridge requests before network access. No live inference, server upload, or analytics was added.
+
+## Product and learning expansion — 2026-10-14
+
+Owner direction: Core remains free for noncommercial use; a combined Studio
+Community & Academic edition is intended for noncommercial use; Studio Business
+is the commercial route; Server targets customer-owned AWS. Names, commercial
+prices, eligibility details, and release terms remain provisional. The new
+model-and-effect marketplace is a planned concept, not an implemented catalogue
+or the separate AWS software-delivery roadmap. No public price or availability
+was inferred from an internal planning example.
+
+Read-only scientific reference: CaliPy development checkout
+`773f0beffed96f38fd4b1867df68e958db223dd0`, maintained context/functionality map,
+modeling-idea Sphinx source, agent bridge README, and existing demo recording.
+The effects guide paraphrases quantities, scientific interfaces, compatibility
+checks, and human review. It adds no model-library catalogue identities. The
+first-model lesson describes the already exported recorded demo and its limits;
+no new scientific run or numerical result was invented. Full internal Sphinx
+output and development notes were not copied into the website.
+
+Reference reviewed: https://posit.co/products/enterprise/workbench (2026-10-14).
+Useful presentation patterns: a clear product proposition, demonstrated workflow,
+learning resources, and a distinct commercial conversation. These are design
+observations, not conversion evidence. CaliPy does not reuse Posit copy, assets,
+customer testimonials, performance claims, or enterprise guarantees.
+
+Added eight pages, shared product data, shared responsive styles, expanded
+navigation/footer, homepage product and learning sections, and an agent workflow.
+The Access page prepares a message locally, exposes an explicit mailto action,
+and offers Copy. No request is transmitted by form submission; consent is
+unchecked by default and does not create a subscription. Editing the form hides
+the previous preview to prevent an outdated message being presented as current.
+
+Validation:
+
+- `node tools/build.mjs`: exit 0; 16 pages and discovery outputs generated.
+- `node tools/check.mjs`: exit 0; 752 local references, page/schema/sitemap
+  consistency, existing numerical evidence, unchanged demo digests, and new
+  request encoding and explicit-consent checks passed.
+- `node --check assets/site.js`, `node --check assets/access-request.js`,
+  `node --check content/expansion-pages.mjs`, and `node --check tools/build.mjs`:
+  exit 0.
+- `node tools/check.mjs --external`: initial sandboxed DNS failure; authorized
+  network retry exited 0 with all six public external destinations HTTP 200.
+- Browser at 1440 px: product cards, keyboard disclosure, business-to-form
+  preselection, required-field validation, prepared message, explicit consent
+  off/on, stale-preview hiding, and Copy feedback verified. No email was sent.
+- All 16 pages checked at 320 px with no page-level horizontal overflow. Mobile
+  menu keyboard opening/navigation/closing and lesson disclosure verified.
+- The preserved browser demo opens with its recorded-run label and model
+  inspector. Its scientific code and bundled assets were not changed.
+
+This validates a local draft. Commercial offers, signup operations, actual
+installer delivery, public documentation release, DNS, hosting, and indexing
+remain separate launch work.
+
+Final browser review also covered the Resources hub and Studio naming across
+the tour and homepage. Browser error/warning logs inspected during the access
+workflow were empty. The core library checkout remains unchanged. Native HTML
+links, disclosures, and lesson content are generated without a JavaScript
+dependency; a browser-wide JavaScript-disabled mode was not exercised.
+
+Final transfer: 32 reviewed files copied into the independent website checkout.
+`node tools/check.mjs` and `git diff --check` then both exited 0 there. The
+website is on `main` with unstaged tracked changes and new files; nothing was
+committed or pushed. The library remained clean on `main`.
+A later log inspection found the existing demo bundle's `THREE.Clock`
+deprecation warning. It does not prevent the demo from opening; replacing that
+API belongs in the GUI source/export, not a hand edit of generated site assets.
+
+## Descriptive content and guided calibration — 2026-10-14
+
+Replaced generic hero/section slogans with descriptive headings while preserving
+the electron-blue theme. Added Calibration to the main navigation, a Gallery tab
+under In action, and links among calibration concepts, effects, and agent work.
+The earlier content was retained: a comparison before transfer confirmed all
+16 previous routes and 129 anchors still exist, and all 26 earlier demo/download
+files are byte-identical. No internal documentation tree or GUI implementation
+was published. The sharing image was re-rendered at 1200 x 630 with the new
+probabilistic-calibration heading; existing scientific screenshots were retained.
+
+New sources: current introductory unknown-mean example, maintained functionality
+map, modeling context, and agent-bridge README at library commit
+773f0beffed96f38fd4b1867df68e958db223dd0. The offset lesson adapts the established
+LatentParameter/Normal/block/NUTS path. It adds no core API or catalogue identity.
+The calibration overview mentions experimental learned/deep-modeling development
+without claiming availability in the older public wheel.
+
+Numerical validation:
+
+- Standard environment check: exit 0, Torch 2.14.1+cpu, Pyro 1.9.1, calipy import
+  resolved inside the current calipy_codex checkout.
+- `MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 timeout 90s .venv/bin/python
+  /tmp/calipy-site-content.d71JOf/downloads/sensor_offset.py --output
+  /tmp/calipy-site-content.d71JOf/downloads/offset`: exit 0.
+- Illustrative fixed readings, exact 20 degree Celsius reference, known Normal
+  noise SD 0.1, offset prior Normal(0, 1). One NUTS chain, warm-up 200, retained
+  draws 500, seed 31. Mean 0.4475893080, SD 0.0323448628; independent analytic
+  reference mean 0.4494382499, SD 0.0353332627 degrees Celsius.
+- Scalar posterior, finite draws, retained count, and finite Monte Carlo
+  tolerances passed. These are smoke checks, not convergence certification.
+  The corrected-readings diagram uses calibration data, not independent validation.
+
+Site validation:
+
+- `node tools/build.mjs`: exit 0; 19 pages plus discovery files generated.
+- `node tools/check.mjs`: exit 0; 1,054 local references; existing scientific
+  evidence and demo integrity; offset CSV/analytic reference/result consistency;
+  static lesson fallback content; populated gallery categories.
+- Syntax checks on the new learning module, learning content, and shared site
+  script exited 0. No external destinations were added; prior HTTP 200 checks
+  remain applicable to the same six public destinations.
+- Browser at 1440 px: lesson tabs, Next/Previous, Home/End/arrow keys, direct
+  step links, end-of-step links, code-copy feedback, all five gallery filters,
+  and the scripted agent walkthrough verified. At 940 px, shared navigation and
+  descriptive home/product headings fit. All 19 pages were checked at 320 px,
+  with no page-level horizontal overflow; mobile menu -> In action -> Gallery
+  and keyboard screenshot filtering worked. Inspected warning/error logs were empty.
+- All lesson panels and gallery cards are present and visible in static HTML.
+  Browser-wide JavaScript-disabled mode was not separately exercised.
+
+Further Posit reference: https://shiny.posit.co/r/gallery/ organizes feature
+demos by purpose and pairs examples with source; this informed the explicit
+resource-format labels, filters, and explanation/code links. Workbench remains
+a product/workflow reference: https://posit.co/products/enterprise/workbench.
+These are design observations, not conversion-performance claims. No reference
+assets or marketing copy were copied. No finished local video assets or video
+links were found in the inspected documentation/examples; real recordings and
+transcripts remain future work, without empty video cards on the public draft.

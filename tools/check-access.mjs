@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import { prepareAccessRequest } from '../assets/access-request.js';
+const values={edition:'business',name:' A & B ',email:'visitor@example.com',affiliation:'Independent',website:'',purpose:'Does x < y?\nKeep a+b & c = d.',updates:false};
+const request=prepareAccessRequest(values,'jemil.butt@atlasoptimization.com');
+const url=new URL(request.href);
+assert.equal(url.protocol,'mailto:');
+assert.equal(url.pathname,'jemil.butt@atlasoptimization.com');
+assert.equal(url.searchParams.get('subject'),request.subject);
+assert.equal(url.searchParams.get('body'),request.body);
+assert.equal([...url.searchParams.keys()].length,2,'user input cannot introduce mail headers');
+assert.ok(request.body.includes('Name: A & B\n'));
+assert.ok(request.body.includes(values.purpose));
+assert.ok(request.body.includes('No, please respond to this inquiry only.'));
+assert.ok(!prepareAccessRequest({...values,updates:'on'},'test@example.com').body.includes('Yes, I would like'));
+assert.ok(prepareAccessRequest({...values,updates:true},'test@example.com').body.includes('Yes, I would like'));
+assert.ok(prepareAccessRequest({...values,edition:'invalid\r\nBcc: third@example.com'},'test@example.com').subject.endsWith('Studio Community & Academic'));
+console.log('PASS: request encoding, fixed recipient, edition allow-list, multiline text, and explicit update consent.');

@@ -110,3 +110,55 @@ The remaining difference between a polished draft and an excellent sales site
 is evidence from actual users: successful first runs, a validated offer, useful
 real-world studies, and a reliable public release. Styling alone cannot supply
 those facts.
+
+## Product-site expansion — 2026-10-14
+
+Prepared: Products with four edition cards and native detail disclosures; In
+action/demo gallery; Resources with three self-guided paths; a three-part
+first-model lesson; About; composable-effects explanation; planned marketplace;
+access inquiry form; human/agent collaboration sequence. The homepage and shared
+navigation lead to these pages; public metadata lists the same product status.
+
+Owner direction now resolves the broad license split: noncommercial-free Core,
+one noncommercial Community & Academic Studio edition, commercial Studio
+Business, and a planned customer-owned AWS Server offering. Studio is a working
+name for the current Model Forge experience. Prices have not been invented.
+
+Remaining launch decisions:
+
+1. Approve product names, eligibility, commercial prices, redistribution rules,
+   support scope, and terms. Do not imply an academic affiliation grants
+   permission for commercial work.
+2. Select release artifacts and supported platforms. Publish approved Core
+   documentation separately from private development and paid product content.
+3. Choose an access-request and mailing-list process, with optional update
+   consent, withdrawal handling, and suitable data-retention/privacy information.
+   The current explicit email handoff is functional but is not a signup backend.
+4. Validate a complete Studio download/onboarding journey before advertising
+   an immediate download. Keep the account-free browser demo as the first action.
+5. Define marketplace participation, seller rights, version compatibility,
+   evidence requirements, payment/refund handling, and support responsibilities
+   before publishing listings. Model/effect sales and AWS software delivery are
+   separate offers.
+6. Add approved real-user evidence and a release-matched narrated demonstration
+   when available; existing examples remain explicitly synthetic or recorded.
+
+Posit Workbench (https://posit.co/products/enterprise/workbench) supplied useful
+structural inspiration: product value → visible workflow → learning → commercial
+conversation. This was adapted to CaliPy’s actual maturity and existing assets,
+without borrowing claims about Posit’s customers or operational capabilities.
+
+## Useful resource journeys — 2026-10-14
+
+Prepared: descriptive headings throughout; a Calibration overview; a filterable
+Gallery with eight existing/new resources; a five-step sensor-offset lesson with
+executed code and numerical evidence; and a four-step scripted agent interaction.
+Resources now leads directly to the interactive tutorial, guided calibration,
+agent walkthrough, and models/code. Previous routes and downloads remain intact.
+
+The next content priority is a short release-matched video showing one complete
+workflow, with captions and transcript. A real instrument study and current
+public Core documentation remain more valuable than additional marketing slogans.
+Only publish actual videos and approved examples; gallery filters should reflect
+resources visitors can use today. Keep learning instructions and licensing tied
+to the software version people can actually obtain.
